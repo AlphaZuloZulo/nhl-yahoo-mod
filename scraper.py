@@ -17,8 +17,8 @@ lstring = ', '.join(lookup)
 
 scraperwiki.sqlite.execute('create table if not exists score (%s)'%lstring)
 
-#url='http://sports.yahoo.com/nhl/stats/byposition?pos=D&conference=NHL&year=season_2015&qualified=1'
-url='http://sports.yahoo.com/nhl/stats/byposition?pos=C,RW,LW&conference=NHL&year=season_2015&qualified=1'
+url='http://sports.yahoo.com/nhl/stats/byposition?pos=D&conference=NHL&year=season_2015&qualified=1'
+#url='http://sports.yahoo.com/nhl/stats/byposition?pos=C,RW,LW&conference=NHL&year=season_2015&qualified=1'
 #url='http://sports.yahoo.com/nhl/stats/byposition?pos=D'
 #url='http://sports.yahoo.com/nhl/stats/byposition?pos=C,RW,LW,D'
 html=requests.get(url).content
@@ -34,4 +34,6 @@ for row in rows:
     data['Pts']=duckint(row.xpath('descendant-or-self::span[@class="yspscores"]')[0].text_content().strip())
     builder.append(data)
     
+#insert section 2
+
 scraperwiki.sqlite.save(table_name='score', data=builder, unique_keys=['Name'])
