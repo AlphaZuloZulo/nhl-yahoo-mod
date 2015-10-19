@@ -11,7 +11,7 @@ def duckint(i):
 
 # Blank Python
 lookup = ['Name','Team','GP','G','A','Pts','diff','PIM','Hits','BkS','FW','FL','FOP','PPG','PPA','SHG','SHA','GW','SOG','Pct']
-num =    [0,1,2,4,6,0,9,11,13,15,17,19,21,23,25,27,29]
+num =    [0,1,2,4,6,0,9,11,13,15,17,19,21,23,25,27,29,30,31,32]
 
 lstring = ', '.join(lookup)
 
@@ -24,7 +24,7 @@ url='http://sports.yahoo.com/nhl/stats/byposition?pos=C,RW,LW&conference=NHL&yea
 html=requests.get(url).content
 root=lxml.html.fromstring(html)
 
-rows=root.xpath('//table[@class="yspcontent"]//tr[@class="ysprow1" or @class="ysprow2"]')
+rows=root.xpath('//tr[@class="ysprow1" or @class="ysprow2"]')
 builder=[]
 for row in rows:
     data={}
